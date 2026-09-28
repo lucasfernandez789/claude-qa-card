@@ -1,0 +1,10 @@
+{
+  "name": "qa-card",
+  "version": "1.0.0",
+  "description": "QA a GitHub card end-to-end: move it through GitHub Projects (Ready to test -> In testing -> Done / In review), test it black-box in the testing environment, and generate the standard test-case sheet.",
+  "author": {
+    "name": "lucasfernandez789"
+  },
+  "license": "MIT",
+  "keywords": ["qa", "testing", "github-projects", "playwright", "test-cases"]
+}

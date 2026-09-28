@@ -1,0 +1,17 @@
+{
+  "org": "YourGitHubOrg",
+  "githubUser": "your-github-user",
+  "tester": "Apellido Nombre",
+  "logo": "C:/Users/you/qa-card/logo.png",
+  "outDir": "C:/Users/you/Downloads",
+  "systems": {
+    "BE-example-repo": {
+      "title": "Sistema de Ejemplo",
+      "prefix": "XX",
+      "testingUrl": "https://testing.example.org/#/",
+      "apiUrl": "https://testing.example.org:4000",
+      "casesLink": "https://your-onedrive-link-to-the-test-cases-workbook",
+      "project": { "number": 1, "id": "PVT_xxx", "statusFieldId": "PVTSSF_xxx", "status": { "Ready to test": "id", "In Testing": "id", "In review": "id", "Done": "id" } }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "claude-qa-card",
+  "owner": {
+    "name": "lucasfernandez789"
+  },
+  "plugins": [
+    {
+      "name": "qa-card",
+      "source": "./plugins/qa-card",
+      "description": "QA a GitHub card end-to-end: move it through GitHub Projects, test it in the testing environment, and generate the standard test-case sheet."
+    }
+  ],
+  "metadata": {
+    "description": "Claude Code plugins for QA testers: test GitHub cards end-to-end and document test cases."
+  }
+}

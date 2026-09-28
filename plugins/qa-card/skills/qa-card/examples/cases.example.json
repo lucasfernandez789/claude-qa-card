@@ -1,0 +1,11 @@
+{
+  "sheet": "XX - 123",
+  "system": "Sistema de Ejemplo",
+  "descripcion": "Se solicitó agregar el filtro por fecha en el listado de pedidos",
+  "cases": [
+    { "criterio": "Login: ingreso al sistema", "prerequisitos": "Usuario correcto para el ingreso al sistema", "resultado": "EXITOSO", "esperado": "Ingreso al sistema" },
+    { "criterio": "Filtrar pedidos por fecha", "prerequisitos": "Pedidos -> filtro Fecha", "resultado": "EXITOSO", "esperado": "Muestra solo pedidos de la fecha" },
+    { "criterio": "Filtro sin resultados", "prerequisitos": "Fecha sin pedidos", "resultado": "FALLIDO", "esperado": "Mensaje de lista vacía", "observaciones": "La pantalla queda cargando" },
+    { "criterio": "Exportar listado filtrado", "prerequisitos": "Filtro aplicado -> Exportar", "resultado": "NO EJECUTADO", "esperado": "Excel con los pedidos filtrados", "observaciones": "Botón no disponible para el rol" }
+  ]
+}

@@ -1,0 +1,5 @@
+node_modules/
+*.xlsx
+*.png
+!docs/**/*.png
+.qa-card/
