@@ -3,7 +3,7 @@
 Plugin de [Claude Code](https://claude.com/claude-code) para hacer QA de cards de GitHub de punta a punta:
 
 1. Lee la card y la mueve en GitHub Projects (**Ready to test → In Testing**).
-2. Prueba la funcionalidad en el entorno de testing (Playwright + API), consultándote en los momentos clave.
+2. Prueba la funcionalidad en el entorno de testing con **Cypress**, dentro del repo de automatizaciones de tu organización, consultándote en los momentos clave.
 3. Genera la hoja estándar de **Casos de Prueba** (`.xlsx`) para copiar en el libro del sistema.
 4. Con tu OK, deja el comentario de cierre y mueve la card a **Done** o **In Review** (con el reporte del bug).
 

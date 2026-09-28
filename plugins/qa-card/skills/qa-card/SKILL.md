@@ -51,21 +51,21 @@ gh project item-edit --id <itemId> --project-id <projectId> --field-id <statusFi
 - Read the user's previous comments/issues when unsure of conventions (`gh search issues --author <user> --owner <org>`).
 
 ## 4. Test (black-box, testing environment) — WITH CYPRESS
-Write the automation in **Cypress** inside , following its existing structure
-(read it first: spec folders, , selectors, fixtures) so the run reaches the
+Write the automation in **Cypress** inside `config.cypressRepo`, following its existing structure
+(read it first: spec folders, `cypress/support/commands`, selectors, fixtures) so the run reaches the
 team's reports. Default layout if none exists:
-- Spec: .
-- Reusable steps as custom commands in , selectors in
-  , data in .
-- API checks/snapshots with  (before/after state). Credentials only via env files that are
+- Spec: `cypress/e2e/<core|features>/<system>/card-<n>-<name>.cy.js`.
+- Reusable steps as custom commands in `cypress/support/commands/<system>.actions.js`, selectors in
+  `cypress/support/selectors/<system>.selectors.js`, data in `cypress/fixtures/<system>.json`.
+- API checks/snapshots with `cy.request` (before/after state). Credentials only via env files that are
   gitignored — never in specs or fixtures.
 - Run with the repo's scripts (prefer a local/no-publish profile while developing), or
-  .
-- Commit on a branch  and follow the repo's delivery rule (PR or push, ask the user).
--  (Node) remains available for quick API reads outside Cypress.
+  `npx cypress run --spec <path>`.
+- Commit on a branch `qa/card-<n>` and follow the repo's delivery rule (PR or push, ask the user).
+- `scripts/api.js` (Node) remains available for quick API reads outside Cypress.
 - Ask the user at key moments: permission blockers, ambiguous behavior, anything that looks like a
   business rule. What the dev confirms as design is EXITOSO (save it as a known rule).
-- Screenshots ONLY when there is a bug (Cypress ). Save them to the output folder.
+- Screenshots ONLY when there is a bug (Cypress `cy.screenshot()`). Save them to the output folder.
 
 ## 5. Document: standard sheet
 Write `cases.json` (format: `examples/cases.example.json`) and run:
