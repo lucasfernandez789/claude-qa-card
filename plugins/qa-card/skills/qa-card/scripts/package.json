@@ -2,10 +2,9 @@
   "name": "qa-card-scripts",
   "version": "1.0.0",
   "private": true,
-  "description": "Helpers for the qa-card skill: browser login/navigation, API snapshots, test-case sheet builder.",
+  "description": "Helpers for the qa-card skill: API snapshots and test-case sheet builder.",
   "dependencies": {
     "exceljs": "^4.4.0",
-    "pdf-parse": "^1.1.1",
-    "playwright": "^1.50.0"
+    "pdf-parse": "^1.1.1"
   }
 }

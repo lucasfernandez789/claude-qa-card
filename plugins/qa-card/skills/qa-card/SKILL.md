@@ -10,7 +10,7 @@ The human leads: confirm with the user before any outward-facing action (moving 
 final state, posting a comment, creating an issue). Talk to the user in their language.
 
 Scripts live in `scripts/` next to this file (the skill base directory). First run:
-`cd <skill dir>/scripts && npm install && npx playwright install chromium`.
+`cd <skill dir>/scripts && npm install`.
 
 ## 0. First-time setup (only if `~/.qa-card/config.json` doesn't exist)
 Ask ONE question at a time and save the answers to `~/.qa-card/config.json`
@@ -19,6 +19,8 @@ Ask ONE question at a time and save the answers to `~/.qa-card/config.json`
 2. The tester's GitHub username (to assign cards). Verify with `gh api user --jq .login`.
 3. Tester name as it goes in the sheet ("Apellido Nombre").
 4. Optional: path to the org logo (png/jpg) for the sheet header.
+5. Path to the organization's **Cypress runner repo** (where automations live) and its structure
+   (spec folders, custom commands, selectors, fixtures). Save as `config.cypressRepo`.
 Also check `gh auth status` shows the `project` scope; if not, tell the user to run
 `! gh auth refresh -h github.com -s project` and to wait for "Authentication complete".
 
@@ -48,16 +50,22 @@ gh project item-edit --id <itemId> --project-id <projectId> --field-id <statusFi
 - Always create NEW test data; old data can legitimately differ after a change.
 - Read the user's previous comments/issues when unsure of conventions (`gh search issues --author <user> --owner <org>`).
 
-## 4. Test (black-box, testing environment)
-- `scripts/lib.js`: Playwright login, hash-router navigation (`go`), SweetAlert handling (`drainSwal`),
-  API call logging. Env: `QA_URL`, `QA_USER`, `QA_PASS` (`QA_USER_LABEL`/`QA_PASS_LABEL` if the login labels differ).
-- `scripts/api.js`: API login + `call()` + `toBuffer()` for report payloads. Env: `QA_API`, `QA_LOGIN_PATH`.
-- Run scripts from a scratch folder with `NODE_PATH=<skill dir>/scripts/node_modules`.
-- Do the flows through the UI. Use the API only to snapshot results (reports, entity state)
-  before/after each step and diff them.
+## 4. Test (black-box, testing environment) — WITH CYPRESS
+Write the automation in **Cypress** inside , following its existing structure
+(read it first: spec folders, , selectors, fixtures) so the run reaches the
+team's reports. Default layout if none exists:
+- Spec: .
+- Reusable steps as custom commands in , selectors in
+  , data in .
+- API checks/snapshots with  (before/after state). Credentials only via env files that are
+  gitignored — never in specs or fixtures.
+- Run with the repo's scripts (prefer a local/no-publish profile while developing), or
+  .
+- Commit on a branch  and follow the repo's delivery rule (PR or push, ask the user).
+-  (Node) remains available for quick API reads outside Cypress.
 - Ask the user at key moments: permission blockers, ambiguous behavior, anything that looks like a
   business rule. What the dev confirms as design is EXITOSO (save it as a known rule).
-- Screenshots ONLY when there is a bug. Save them to the output folder.
+- Screenshots ONLY when there is a bug (Cypress ). Save them to the output folder.
 
 ## 5. Document: standard sheet
 Write `cases.json` (format: `examples/cases.example.json`) and run:
