@@ -26,7 +26,9 @@ Also check `gh auth status` shows the `project` scope; if not, tell the user to 
 
 ## 1. Inputs per card (ask for any missing one, one at a time)
 1. **Issue link** (GitHub card).
-2. **Credentials** for the testing environment (chat only; pass as env vars; NEVER write them to disk or memory).
+2. **Credentials** for the testing environment, **one per role** (chat only; pass as env vars; NEVER write them
+   to disk or memory). Roles change permissions, catalogs and views: confirm which role the card belongs
+   to and test with it; a missing option/permission with the wrong role is NOT a bug.
 3. **Link to the system's "Casos de prueba" workbook** (OneDrive/SharePoint) — for the closing comment.
 If the system (repo) is new in `config.systems`, also ask: testing front URL, API URL, sheet prefix
 (e.g. `BP`), system title for the sheet header. Save them under `config.systems[<repo>]`.
