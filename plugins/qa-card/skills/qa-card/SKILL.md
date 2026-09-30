@@ -56,13 +56,20 @@ gh project item-edit --id <itemId> --project-id <projectId> --field-id <statusFi
 Write the automation in **Cypress** inside `config.cypressRepo`, following its existing structure
 (read it first: spec folders, `cypress/support/commands`, selectors, fixtures) so the run reaches the
 team's reports. Default layout if none exists:
-- Spec: `cypress/e2e/<core|features>/<system>/card-<n>-<name>.cy.js`.
+- Spec: `cypress/e2e/<core|features>/<system>/[<view>/]card-<n>-<name>.cy.js` (1st folder = suite type,
+  2nd = system, optional 3rd = view, `card-<n>-` = card).
+- If the runner has a system registry (e.g. `config/systems.json` mapping system → card repo), add ONE
+  line for a new system so reports link the card. Never fall back to another system's repo.
 - Reusable steps as custom commands in `cypress/support/commands/<system>.actions.js`, selectors in
   `cypress/support/selectors/<system>.selectors.js`, data in `cypress/fixtures/<system>.json`.
 - API checks/snapshots with `cy.request` (before/after state). Credentials only via env files that are
   gitignored — never in specs or fixtures.
 - Run with the repo's scripts (prefer a local/no-publish profile while developing), or
   `npx cypress run --spec <path>`.
+- Once green, publish the run to the team's reports dashboard if the repo supports it (usually behind an
+  explicit opt-in flag) and, with the user's OK, link the run in the card comment.
+- A run that failed because of an automation bug (false failure) must not stay as evidence: tell the
+  user before deleting or invalidating it.
 - Commit on a branch `qa/card-<n>` and follow the repo's delivery rule (PR or push, ask the user).
 - `scripts/api.js` (Node) remains available for quick API reads outside Cypress.
 - Ask the user at key moments: permission blockers, ambiguous behavior, anything that looks like a
