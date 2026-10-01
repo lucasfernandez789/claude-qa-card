@@ -32,6 +32,11 @@ Also check `gh auth status` shows the `project` scope; if not, tell the user to 
 3. **Link to the system's "Casos de prueba" workbook** (OneDrive/SharePoint) — for the closing comment.
 If the system (repo) is new in `config.systems`, also ask: testing front URL, API URL, sheet prefix
 (e.g. `BP`), system title for the sheet header. Save them under `config.systems[<repo>]`.
+**Repos (always ask, never infer from the card or local folder names)**: front repo, back repo,
+repo where QA cards/bug issues go, and the default repo for bugs when it's unclear which side failed
+(an HTTP 4xx/5xx from the API usually belongs to the back). Core/smoke suites have NO card, so the
+repo must come from the system profile, not from `card-<n>`. Save them in the profile and in the
+runner's system registry if it has one.
 If Engram is available, also save/read the system's structure there (project `qa-<org>`).
 
 ## 2. Read the card and move it to "In Testing"
