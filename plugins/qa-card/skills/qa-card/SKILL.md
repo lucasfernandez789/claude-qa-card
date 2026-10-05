@@ -80,6 +80,8 @@ team's reports. Default layout if none exists:
 - Ask the user at key moments: permission blockers, ambiguous behavior, anything that looks like a
   business rule. What the dev confirms as design is EXITOSO (save it as a known rule).
 - Screenshots ONLY when there is a bug (Cypress `cy.screenshot()`). Save them to the output folder.
+- **Test data is always fictitious** (names, national ids, emails, case numbers): no real data in specs,
+  fixtures, reports, issues or commits. Never commit `.env*` files.
 
 ## 5. Document: standard sheet
 Write `cases.json` (format: `examples/cases.example.json`) and run:
