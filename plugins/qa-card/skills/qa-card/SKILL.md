@@ -83,6 +83,23 @@ team's reports. Default layout if none exists:
 - **Test data is always fictitious** (names, national ids, emails, case numbers): no real data in specs,
   fixtures, reports, issues or commits. Never commit `.env*` files.
 
+### Bug lifecycle
+1. Detect. 2. Confirm it is a real bug (not a role, a business rule or an automation error; ask the dev
+if unsure). 3. Write a test with the EXPECTED behavior: title `BUG - <summary>`, tag `bug`, assertion
+message `Esperado: <x> | Actual: <y>`; it fails while the bug exists. 4. Report the issue and link it to
+the test. 5. The dev fixes it. 6. Re-confirm with the dev (the expected behavior may have changed) and
+adjust the test. 7. Run it: green means the card can go to Done; the test stays as a regression test,
+without the `bug` tag.
+
+### Reporting from the reports dashboard (if the team's runner has one)
+If failed tests in the run detail have a **Report bug** action, use it: it opens an editable draft
+(title + markdown body) with redaction of tokens/emails/ids and the run link. Copying the markdown always
+works; creating the issue from the dashboard only works when the spec has a card with a repo (core/smoke
+specs have none: copy the draft and create the issue by hand). The draft puts a context block (system,
+spec, test, run, commit, branch) and the capture placeholder first so they survive URL truncation: keep
+them when editing. Screenshots are never attached automatically; the user drags the capture in.
+Review the draft against the bug report structure below before sending.
+
 ## 5. Document: standard sheet
 Write `cases.json` (format: `examples/cases.example.json`) and run:
 ```bash
