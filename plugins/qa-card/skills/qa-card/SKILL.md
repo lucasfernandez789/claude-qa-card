@@ -129,6 +129,13 @@ The user copies the sheet into the system's workbook. Rules:
   for the developer.
 - Tell the user to check the card.
 
+## Where a bug goes (routing)
+- The card's own "Probar"/acceptance item fails: comment on that same card and move it to **In Review**
+  (never Done).
+- A bug in the card's flow but outside the card's scope: create a NEW issue and link it from a comment on
+  the card; the card's verdict depends only on its own scope.
+- A bug found outside any card (exploratory, core/smoke suites): create a new issue.
+
 ## Bug report structure (In review comments AND new bug issues)
 ```
 **Descripción:**
